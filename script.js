@@ -19,9 +19,19 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 /**************************************************************/
 function helloWorld(){
   console.log("Running helloWorld()")
-  firebase.database().ref('/').set(
+  firebase.database().ref('user/Bingbong1').set(
     {
-      message: 'Hello World!'
+      age: '24',
+      name: 'Bingbong',
+      hobby: 'Missing their wife'
     }
   )
-}
+  }
+  function goodbye(){
+    firebase.database().ref('/goodbye').set(
+    {
+      word: 'bye'
+    }
+
+  )
+  }

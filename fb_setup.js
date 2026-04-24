@@ -7,14 +7,16 @@
 // Input:  n/a
 // Return: n/a
 /**************************************************************/
+  
   const firebaseConfig = {
-    apiKey: ,
-    authDomain: ,
-    databaseURL: ,
-    projectId: ,
-    storageBucket: ,
-    messagingSenderId:,
-    appId:
+    apiKey: "AIzaSyCB9Br_Jb9KqYC5mCiV88_Y--I677PEGtc",
+    authDomain: "pin-that-ball-3fc56.firebaseapp.com",
+    databaseURL: "https://pin-that-ball-3fc56-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "pin-that-ball-3fc56",
+    storageBucket: "pin-that-ball-3fc56.firebasestorage.app",
+    messagingSenderId: "829901276897",
+    appId: "1:829901276897:web:9cd58edd48463c763259a0",
+    measurementId: "G-Z51N0FS158"
   };
 
   // Initialize Firebase
