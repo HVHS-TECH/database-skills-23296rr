@@ -19,7 +19,6 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 /**************************************************************/
 function helloWorld(){
   console.log("Running helloWorld()")
-  firebase.database().ref('/Bingbong1').child('message').once('value', DO_THIS)
   firebase.database().ref('/').set(
     {
       message: 'bye'
@@ -27,7 +26,17 @@ function helloWorld(){
   )
 }
 
+function read() {
+  console.log("Begun reading")
+  firebase.database().ref('/message').once('value', DO_THIS)
+}
+  
 function DO_THIS(snapshot) {
-  console.log('working')
-  console.log(snapshot.val())
+  console.log("do this is doing this")
+  var dbData = snapshot.val();
+  if (dbData == null) {
+    console.log('There was no record when trying to read the message');
+  } else {
+    console.log("The message is: " + dbData)
+  }
 }
