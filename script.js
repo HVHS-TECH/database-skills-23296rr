@@ -17,6 +17,11 @@ const HTML_OUTPUT = document.getElementById("databaseOutput");
 // The ref('/') part tells the operation to write to the base level of the database "/"
 // This means it replaces the whole database with message:Hello World
 /**************************************************************/
+
+let ran = "Ran";
+let ranHighScore = "17500";
+let ranLowScore = "-1000";
+
 function bingbong(){
   console.log("Running bingbong()")
   firebase.database().ref('/').set(
@@ -51,17 +56,17 @@ function bingbong(){
 
 function read() {
   console.log("Begun reading")
-  firebase.database().ref('/pinthatball/users/jacob/lowscore').once('value', DO_THIS_UNSAFE)
+  firebase.database().ref('/pinthatball/users/Jacob/lowscore').once('value', DO_THIS_UNSAFE)
 }
 
 function saferead() {
   console.log("Begun safe reading")
-  firebase.database().ref('/bingbong/pinthatball/users/jacob/lowscore').once('value', DO_THIS, fb_readError)
+  firebase.database().ref('/pinthatball/users/Jacob/lowscore').once('value', DO_THIS, fb_readError)
 }
 
 function listening() {
   console.log("Begun listening")
-  firebase.database().ref('/bingbong').on('value', DO_THIS, fb_readError)
+  firebase.database().ref('/pinthatball/users/Jacob/lowscore').on('value', DO_THIS, fb_readError)
 }
 
 function DO_THIS_UNSAFE(snapshot) {
@@ -80,4 +85,14 @@ function DO_THIS(snapshot) {
 function fb_readError(error) {
   console.log("There was an error reading the message");
   console.error(error);
+}
+
+function addRan() {
+  firebase.database().ref('/pinthatball/users/' + ran).set(
+    {
+        highscore: ranHighScore,
+        lowscore: ranLowScore,
+      }
+  )
+  console.log('added ran')
 }
