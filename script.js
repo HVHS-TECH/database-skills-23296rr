@@ -22,11 +22,12 @@ let ran = "Ran";
 let ranHighScore = "17500";
 let ranLowScore = "-1000";
 
-function bingbong(){
+function bingbong() {
   console.log("Running bingbong()")
   firebase.database().ref('/').set(
     {
       pinthatball: {
+        game1: {
         users: {
           Dima: {
             highscore: 70000,
@@ -49,6 +50,31 @@ function bingbong(){
             lowscore: 100000000,
           },
         }
+      },
+      game2: {
+      users: {
+        Dima: {
+            highscore: 64000,
+            lowscore: 3400,
+          },
+          Toby: {
+            highscore: 543000,
+            lowscore: 34000,
+          },
+          Yannik: {
+            highscore: 4324000,
+            lowscore: 0,
+          },
+          Jacob: {
+            hightscore: 27400000,
+            lowscore: 27400000,
+          },
+          Savin: {
+            hightscore: 160000,
+            lowscore: 1000,
+          },
+      }
+      }
       }
     }
   )
@@ -61,12 +87,12 @@ function read() {
 
 function saferead() {
   console.log("Begun safe reading")
-  firebase.database().ref('/pinthatball/users/Jacob/lowscore').once('value', DO_THIS, fb_readError)
+  firebase.database().ref('/pinthatball/game1/users/Dima/highscore').once('value', DO_THIS, fb_readError)
 }
 
 function listening() {
   console.log("Begun listening")
-  firebase.database().ref('/pinthatball/users/Jacob/lowscore').on('value', DO_THIS, fb_readError)
+  firebase.database().ref('/pinthatball/game1/users/Jacob/highscore').on('value', DO_THIS, fb_readError)
 }
 
 function DO_THIS_UNSAFE(snapshot) {
@@ -95,4 +121,10 @@ function addRan() {
       }
   )
   console.log('added ran')
+}
+
+function fb_displayHighScores(snapshot) {
+  let highScores = snapshot.val( )
+  console.log("Mr Britton got "+Dima["Ben Britton"]+" points" )
+
 }
