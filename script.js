@@ -23,8 +23,10 @@ let ranHighScore = "17500";
 let ranLowScore = "-1000";
 
 const person = {
-  firstName: "John",
-  lastName: "Doe",
+  name: {
+    first: "John",
+    last: "Doe",
+  },
   age: 50,
   eyeColor: "blue"
 };
@@ -121,20 +123,29 @@ function complexReadJacob() {
 
 function fb_displayDimaHighScores(snapshot) {
   let Dima = snapshot.val().users.Dima.highscore
-  console.log("Dima got "+Dima + " for their high score" )
+  console.log("Dima got "+ Dima + " for their high score" )
 }
 function fb_displayJacobHighScores(snapshot) {
   let Jacob = snapshot.val().users.Jacob.lowscore
- 
   console.log("Jacob got "+Jacob + " for their low score" )
 }
 
 function keysScore(snapshot) {
-  let names = Object.keys(person);
-  console.log(names)
+  let names = Object.keys(person["name"]);
+  console.log(person["name"])
 }
 
+function allHighScores() {
+  firebase.database().ref('/pinthatball/game1').once('value', fb_displayAllHighScores, fb_readError)
+}
 
+function fb_displayAllHighScores(snapshot) {
+  let highScores = Object.keys(snapshot.val().users)
+  for(i = 0; i < highScores.length; i++){
+    let key = highScores[i];
+    console.log("Player " + i + " is " + key + ", they got a score of " + snapshot.val())
+  }
+}
 
 
 
