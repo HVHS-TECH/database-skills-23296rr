@@ -136,14 +136,17 @@ function keysScore(snapshot) {
 }
 
 function allHighScores() {
-  firebase.database().ref('/pinthatball/game1').once('value', fb_displayAllHighScores, fb_readError)
+  firebase.database().ref('/pinthatball/game1/users').once('value', fb_displayAllHighScores, fb_readError)
 }
 
 function fb_displayAllHighScores(snapshot) {
-  let highScores = Object.keys(snapshot.val().users)
+  let highScores = Object.keys(snapshot.val())
+  var dbData = snapshot.val();
+  console.log(dbData)
+  console.log(highScores)
   for(i = 0; i < highScores.length; i++){
     let key = highScores[i];
-    console.log("Player " + i + " is " + key + ", they got a score of " + snapshot.val())
+    console.log("Player " + i + " is " + key + ", they got a score of " + dbData["highscore"])
   }
 }
 
@@ -162,7 +165,7 @@ function DO_THIS_UNSAFE(snapshot) {
 }
 
 function addRan() {
-  firebase.database().ref('/pinthatball/game2/users/' + ran).set(
+  firebase.database().ref('/pinthatball/game1/users/' + ran).set(
     {
         highscore: ranHighScore,
         lowscore: ranLowScore,
