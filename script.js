@@ -89,6 +89,34 @@ function bingbong() {
   )
 }
 
+function bingbongSimple() {
+  console.log("Running bingbongSimple()")
+  firebase.database().ref('/').set(
+    {
+      pinthatball: {
+        game1: {
+        users: {
+          Dima: 7000,
+          Toby: 50000,
+          Yannik: 560000,
+          Jacob: 123000,
+          Savin: 2134000,
+        }
+      },
+      game2: {
+      users: {
+          Dima: 27000,
+          Toby: 9450000,
+          Yannik: 721560000,
+          Jacob: 321123000,
+          Savin: 572134000,
+        }
+      }
+      }
+    }
+  )
+}
+
 function saferead() {
   console.log("Begun safe reading")
   firebase.database().ref('/pinthatball/game1').once('value', DO_THIS, fb_readError)
@@ -144,9 +172,10 @@ function fb_displayAllHighScores(snapshot) {
   var dbData = snapshot.val();
   console.log(dbData)
   console.log(highScores)
+  console.log(dbData["Dima"]["lowscore"])
   for(i = 0; i < highScores.length; i++){
     let key = highScores[i];
-    console.log("Player " + i + " is " + key + ", they got a score of " + dbData["highscore"])
+    console.log("Player " + i + " is " + key + ", they got a highscore of " + dbData[key]["highscore"] + " and a low score of " + dbData[key]["lowscore"])
   }
 }
 
