@@ -171,13 +171,31 @@ function fb_displayAllHighScores(snapshot) {
   let highScores = Object.keys(snapshot.val())
   var dbData = snapshot.val();
   console.log(dbData)
-  console.log(highScores)
-  console.log(dbData["Dima"]["lowscore"])
   for(i = 0; i < highScores.length; i++){
     let key = highScores[i];
     console.log("Player " + i + " is " + key + ", they got a highscore of " + dbData[key]["highscore"] + " and a low score of " + dbData[key]["lowscore"])
   }
 }
+
+
+function orderedScore() {
+  firebase.database().ref('/pinthatball/game1/users').orderByValue().once('value', fb_displayOrderedScore, fb_readError)
+}
+
+function fb_displayOrderedScore(snapshot) {
+  snapshot.forEach(fb_showOneScore)
+}
+
+function fb_showOneScore(child) {
+  console.log(child.key + " got a score of " + child.val()["highscore"])
+}
+
+
+
+
+
+
+
 
 
 
