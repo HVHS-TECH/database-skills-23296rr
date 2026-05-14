@@ -187,10 +187,21 @@ function fb_displayOrderedScore(snapshot) {
 }
 
 function fb_showOneScore(child) {
-  console.log(child.key + " got a score of " + child.val()["highscore"])
+  console.log(child.key + " got a score of " + child.val())
 }
 
 
+function orderedName() {
+  firebase.database().ref('/pinthatball/game1/users').orderByKey().once('value', fb_displayOrderedScore, fb_readError)
+}
+
+function fb_displayOrderedName(snapshot) {
+  snapshot.forEach(fb_showOneName)
+}
+
+function fb_showOneName(child) {
+  console.log(child.key + " got a score of " + child.val())
+}
 
 
 
