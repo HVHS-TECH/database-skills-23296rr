@@ -213,6 +213,7 @@ function fb_showOneName(child) {
 
 
 
+
 function read() {
   console.log("Begun reading")
   firebase.database().ref('/pinthatball/users/Jacob/lowscore').once('value', DO_THIS_UNSAFE)
